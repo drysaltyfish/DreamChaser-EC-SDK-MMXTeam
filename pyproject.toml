@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fusai-sdk"
+version = "0.3.0"
+description = "Host-side Python SDK for the Fusai STM32 dual-link motion protocol v2.0"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Fusai" }]
+dependencies = [
+    "pyserial>=3.5",
+]
+
+[project.optional-dependencies]
+ble = [
+    "bleak>=0.22",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "bleak>=0.22",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fusai_sdk"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
